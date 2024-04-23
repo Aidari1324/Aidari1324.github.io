@@ -2,6 +2,9 @@
 document.addEventListener('DOMContentLoaded', () => {
     const addBtn = document.getElementById('add-btn');
     addBtn.addEventListener('click', addNewData);
+
+    const Preview = document.querySelector('.preview-btn');
+    Preview.addEventListener('click', PreImg);
 });
 
 // Functie voor toevoegen nieuwe data
@@ -51,3 +54,9 @@ const generateUniqueID = (originalData) => {
 const navigateToPage = () => {
     window.location.href = '../html/admin-p.html';
 };
+
+const PreImg = () => {
+    const LINK = document.getElementById('product-link').value;
+    const IMG = document.getElementById('preview-img');
+    IMG.src = LINK;
+}
