@@ -55,6 +55,7 @@ const navigateToPage = () => {
     window.location.href = '../html/admin-p.html';
 };
 
+// pakt value uit input en weergeeft het in de img src
 const PreImg = () => {
     const LINK = document.getElementById('product-link').value;
     const IMG = document.getElementById('preview-img');

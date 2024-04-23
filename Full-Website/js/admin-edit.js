@@ -62,7 +62,7 @@ function saveEditData() {
     }
 }
 
-
+// pakt afbeelding value en weergeeft het
 function updateImg() {
     const productlink = document.getElementById('product-link').value;
     const previewImg = document.getElementById('preview-img');
