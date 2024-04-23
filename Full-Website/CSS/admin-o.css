@@ -1,0 +1,25 @@
+/* pakt alleen de 1ste a in btn-holder */
+.btn-holder a:first-of-type {
+    color: white;
+    background-color: blue;
+}
+
+/* 1ste a wanneer hover */
+.btn-holder a:first-of-type:hover {
+    background-color: transparent;
+    color: blue;
+}
+
+/* applies to all a's */
+.btn-holder a {
+    padding: 0.5rem;
+    border-radius: 10px;
+    text-decoration: none;
+    color: blue;
+    transition: 400ms ease-in-out;
+}
+/* styling voor last a wanneer hover */
+.btn-holder a:last-of-type:hover {
+    background-color: rgb(124, 175, 247);
+    color: white;
+}
