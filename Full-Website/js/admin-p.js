@@ -73,6 +73,7 @@ function editProduct(productId, updatedProduct) {
 
 function createbtns(product, EDIT, REMOVE) {
     const editBtn = document.createElement('button');
+    editBtn.classList = 'edit-style';
     editBtn.textContent = 'edit';
     editBtn.addEventListener('click', () => {
     window.location.href = `../html/admin-edit.html?id=${product.id}`; // ${} dient voor de ID mee te geven naar de volgende pagina
@@ -80,6 +81,7 @@ function createbtns(product, EDIT, REMOVE) {
 
     const removeBtn = document.createElement('button');
     removeBtn.textContent = 'remove';
+    removeBtn.classList = 'remove-style';
     removeBtn.addEventListener('click', () => {
         removeProduct(product.id);
     });
@@ -89,25 +91,25 @@ function createbtns(product, EDIT, REMOVE) {
 }
 
 function removeProduct(productId) {
-    // Retrieve original data
+    // pakt origineel data
     let originalData = JSON.parse(localStorage.getItem('originalData')) || [];
 
-    // Filter out the removed product
+    // Filter uit de weggehaalde producten
     originalData = originalData.filter(product => product.id !== productId);
 
-    // Save updated original data
+    // slaat op
     localStorage.setItem('originalData', JSON.stringify(originalData));
 
-    // Retrieve removed product IDs
+    // haalt verwijderde IDs op
     let removedIds = JSON.parse(localStorage.getItem('removedIds')) || [];
     
-    // Add the removed product ID
+    // voeg de verwijderde IDS naar product.Id
     removedIds.push(productId);
 
-    // Save updated removed IDs
+    // slaat opnieuw op
     localStorage.setItem('removedIds', JSON.stringify(removedIds));
 
-    // Render updated data
+    // Render data
     renderData(originalData);
 }
 

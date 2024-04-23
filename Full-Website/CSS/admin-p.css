@@ -28,7 +28,7 @@
 
 /* BODY */
 
-/* locaties binnen loc */
+/* position binnen loc */
 .loc {
     display: flex;
     align-items: center;
@@ -49,6 +49,11 @@
     text-decoration: none;
     font-size: 24px;
 }
+/* style knop rechts on hover */
+.loc a:hover {
+    transition: 250ms;
+    background-color: rgb(0, 205, 137);
+}
 
 /* knop links */
 .JSON-btn {
@@ -60,8 +65,10 @@
 
 /* knop link wanneer hover actief is */
 .JSON-btn:hover {
+    transition: 200ms;
     border: 1px solid red;
-    background-color: rgb(240, 240, 240);
+    background-color: gray;
+    color: white;
 }
 
 /* maakt de buttons onderelkaar */
@@ -73,4 +80,31 @@
 /* zorgt voor dat de layout netjes uitziet */
 .inv {
     color: transparent;
+}
+
+/* edit btn style */
+.edit-style {
+    color: white;
+    border: 2px solid black;
+    background-color: rgb(0, 193, 128);
+}
+
+/* edit hover style */
+.edit-style:hover {
+    color: black;
+    transition: 250ms;
+    background-color: aquamarine;
+}
+
+/* remove btn style */
+.remove-style {
+    border: 2px solid black;
+    color: white;
+    background-color: rgb(255, 46, 46);
+}
+
+/* remove hover style */
+.remove-style:hover {
+    transition: 250ms;
+    background-color: red;
 }
