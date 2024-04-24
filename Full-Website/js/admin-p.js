@@ -79,7 +79,7 @@ function createbtns(product, EDIT, REMOVE) {
     editBtn.classList = 'edit-style';
     editBtn.textContent = 'edit';
     editBtn.addEventListener('click', () => {
-    window.location.href = `../html/admin-edit.html?id=${product.id}`; // ${} dient voor de ID mee te geven naar de volgende pagina
+        window.location.href = `../html/admin-edit.html?id=${product.id}`; // ${} dient voor de ID mee te geven naar de volgende pagina
     });
 
     const removeBtn = document.createElement('button');
@@ -106,7 +106,7 @@ function removeProduct(productId) {
 
     // pakt de verwijderde producten IDs op
     let removedIds = JSON.parse(localStorage.getItem('removedIds')) || [];
-    
+
     // voegt de id toe aan de array
     removedIds.push(productId);
 
@@ -128,7 +128,7 @@ const resetBtn = document.getElementById('reset-btn').addEventListener('click', 
         })
         .then(data => {
             localStorage.setItem('originalData', JSON.stringify(data));
-            
+
             localStorage.removeItem('removedIds');
 
             renderData(data);

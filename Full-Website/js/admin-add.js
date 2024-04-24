@@ -15,7 +15,7 @@ const addNewData = () => {
     const LINK = document.getElementById('product-link').value;
 
     // Valideer het formulier
-    if (NAME === '' || isNaN(PRICE) || PRICE < 0 || LINK === '') {
+    if (NAME === '' || Number.isNaN(PRICE) || PRICE < 0 || LINK === '') {
         alert('Vul alle gegevens in');
         return;
     }
@@ -31,7 +31,7 @@ const addNewData = () => {
         id: ProductId,
         name: NAME,
         price: PRICE,
-        link: LINK
+        link: LINK,
     };
 
     // Voeg het nieuwe product toe aan de originele data
@@ -45,10 +45,7 @@ const addNewData = () => {
 };
 
 // Functie voor het genereren van een uniek ID op basis van bestaande IDs
-const generateUniqueID = (originalData) => {
-    // Zoek het hoogste bestaande ID en voeg 1 toe
-    return originalData.reduce((max, product) => Math.max(max, product.id), 0) + 1;
-};
+const generateUniqueID = (originalData) => originalData.reduce((max, product) => Math.max(max, product.id), 0) + 1;
 
 // Functie om naar een andere pagina te navigeren
 const navigateToPage = () => {
@@ -60,4 +57,4 @@ const PreImg = () => {
     const LINK = document.getElementById('product-link').value;
     const IMG = document.getElementById('preview-img');
     IMG.src = LINK;
-}
+};

@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     let cartItems = JSON.parse(localStorage.getItem('cartItems') || '[]');
     const originalData = JSON.parse(localStorage.getItem('originalData'));
 
@@ -11,20 +11,22 @@ document.addEventListener('DOMContentLoaded', function() {
 
     const totalAmounts = {};
 
-    cartItems.forEach(itemId => totalAmounts[itemId] = (totalAmounts[itemId] || 0) + 1);
+    // telt de aantal in cart op
+    cartItems.forEach(function (itemId) {
+        totalAmounts[itemId] = (totalAmounts[itemId] || 0) + 1;
+    });
 
     let totalPrice = 0;
 
     // loopts door origineel data en zet product informatie
     originalData
-    // Filter alleen de product in de cart
-        .filter(product => cartItems.includes(product.id)) 
+        // Filter alleen de product in de cart
+        .filter(product => cartItems.includes(product.id))
         .forEach(product => {
-
             // hoeveelheid van elk product
-            const amount = totalAmounts[product.id] || 0; 
+            const amount = totalAmounts[product.id] || 0;
             // calculatie voor het totaal prijs van alles bij elkaar
-            const total = amount * product.price; 
+            const total = amount * product.price;
 
             // producten naar html
             productTitleElement.innerHTML += `<p>${product.name}</p>`;
@@ -37,7 +39,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     totaalPrijsElement.textContent = totalPrice.toFixed(2);
 
-    checkoutBtn.addEventListener('click', function() {
+    checkoutBtn.addEventListener('click', function () {
         // verwijderd de cart items van localstorage
         localStorage.removeItem('cartItems');
         // stuur door naar andere website

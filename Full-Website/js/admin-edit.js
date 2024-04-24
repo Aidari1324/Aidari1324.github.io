@@ -14,13 +14,13 @@ function editData(productId) {
     // haalt orgineel data uit de local
     const originalData = JSON.parse(localStorage.getItem('originalData'));
     // zoekt welke ID overeen komt
-    const product = originalData.find(product => product.id == productId);
+    const product = originalData.find(item => item.id == productId);
     // wanneer gevonden zet de informatie in de juiste plekken
     if (product) {
         document.getElementById('product-name').value = product.name;
         document.getElementById('product-price').value = product.price;
         document.getElementById('product-link').value = product.link;
-    } 
+    }
 }
 
 // slaat bewerkte gegevens op
