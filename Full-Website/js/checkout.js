@@ -1,4 +1,3 @@
-// als de pagina ingeladen is gaat dit actief
 document.addEventListener('DOMContentLoaded', function () {
     let cartItems = JSON.parse(localStorage.getItem('cartItems') || '[]');
     const originalData = JSON.parse(localStorage.getItem('originalData'));

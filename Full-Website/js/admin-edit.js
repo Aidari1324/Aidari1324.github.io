@@ -32,7 +32,7 @@ function saveEditData() {
     const productLink = document.getElementById('product-link').value;
 
     // Checkt of alles een input heeft zo niet alert
-    if (!productName && !productPrice && !productLink) {
+    if (!productName || !productPrice || !productLink) {
         alert('Vul alles in');
         return;
     }
@@ -58,7 +58,7 @@ function saveEditData() {
         // terug naar overzicht
         window.location.href = '../html/admin-p.html';
     } else {
-        console.error('Product helaas niet gevonden.');
+        console.error('Product niet gevonden.');
     }
 }
 
