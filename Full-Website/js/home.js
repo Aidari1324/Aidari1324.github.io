@@ -40,7 +40,7 @@ function PrintToCards(products) {
     card.appendChild(h3Element);
 
     const pElement = document.createElement('p');
-    pElement.textContent = '€ ' + product.price;
+    pElement.textContent = '€ ' + product.price.toFixed(2);
     card.appendChild(pElement);
 
     // Knop maken en stuurt data ID naar local storage bij click
