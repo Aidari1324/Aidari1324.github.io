@@ -1,15 +1,12 @@
-// wanneer website ingeladen is fetch data
 document.addEventListener('DOMContentLoaded', () => {
     fetchData();
 });
 
-// pakt de data uit de localstorage
 function fetchData() {
     const originalData = JSON.parse(localStorage.getItem('originalData'));
     renderData(originalData);
 }
 
-// functie voor het display naar HTML
 function renderData(data) {
     const ID = document.getElementById('id-input');
     const NAME = document.getElementById('name-input');
@@ -26,7 +23,6 @@ function renderData(data) {
     EDIT.innerHTML = '';
     REMOVE.innerHTML = '';
 
-    // voor elke product weergeeft die dit
     data.forEach(product => {
         if (!isRemoved(product.id)) {
             const idElement = document.createElement('p');
@@ -50,51 +46,34 @@ function renderData(data) {
     });
 }
 
-// kijkt of het verwijderd is of niet
+// slaat de verwijderde IDs op en anders creëert een array voor ids en slaat het daarin op
 function isRemoved(productId) {
-    // pakt array uit anders maak er een
     const removedIds = JSON.parse(localStorage.getItem('removedIds')) || [];
-
-    // kijkt of er ergens in zit zo ja = true | zo niet = false
     return removedIds.includes(productId);
 }
 
-// creeer nieuwe product
+// pakt origineel data op en zet daarin de toegevoegde product en creëert de data zodat het meteen zichtbaar is
 function addProduct(product) {
-    // haal original uit localstorage anders maak er een array
-    const originalData = JSON.parse(localStorage.getItem('originalData')) || [];
-
-    // gooit de data van product in de array
+    const originalData = JSON.parse(localStorage.getItem('originalData'));
     originalData.push(product);
-
-    // update de local
     localStorage.setItem('originalData', JSON.stringify(originalData));
-
-    // render de data zodat het up to date is
     renderData(originalData);
 }
 
-// edit producten
+// wanneer je iets edit pak de huidig data op uit de local vergelijk tot dat je de ID hebt en push de veranderde gevens door anders doe niks
 function editProduct(productId, updatedProduct) {
-    // pakt origineel data uit de local anders creeer een array
-    const originalData = JSON.parse(localStorage.getItem('originalData')) || [];
-
-    // maak updatedData door originalData te mappen en het product te vervangen als de ID's gelijk zijn
+    const originalData = JSON.parse(localStorage.getItem('originalData'));
     const updatedData = originalData.map(product => {
         if (product.id === productId) {
             return updatedProduct;
         }
         return product;
     });
-
-    // plaats de data terug in de localstorage
     localStorage.setItem('originalData', JSON.stringify(updatedData));
-
-    // render de localstorage
     renderData(updatedData);
 }
 
-// maakt en plaats de knoppen ( edit en remove )
+// maakt button die bij de IDs/producten horen
 function createbtns(product, EDIT, REMOVE) {
     const editBtn = document.createElement('button');
     editBtn.classList = 'edit-style';
@@ -104,8 +83,8 @@ function createbtns(product, EDIT, REMOVE) {
     });
 
     const removeBtn = document.createElement('button');
-    removeBtn.textContent = 'remove';
     removeBtn.classList = 'remove-style';
+    removeBtn.textContent = 'remove';
     removeBtn.addEventListener('click', () => {
         removeProduct(product.id);
     });
@@ -114,30 +93,31 @@ function createbtns(product, EDIT, REMOVE) {
     REMOVE.appendChild(removeBtn);
 }
 
+// pakt data uit de local en filtered de verwijderde data weg en slaat die ids op en laat het weer weergeven
 function removeProduct(productId) {
-    // pakt origineel data
-    let originalData = JSON.parse(localStorage.getItem('originalData')) || [];
+    // haalt origineel data op
+    let originalData = JSON.parse(localStorage.getItem('originalData'));
 
-    // Filter uit de weggehaalde producten
+    // Filter weg de verwijderde producten
     originalData = originalData.filter(product => product.id !== productId);
 
-    // slaat op
+    // sla de geupdated original data op in local
     localStorage.setItem('originalData', JSON.stringify(originalData));
 
-    // haalt verwijderde IDs op
+    // pakt de verwijderde producten IDs op
     let removedIds = JSON.parse(localStorage.getItem('removedIds')) || [];
     
-    // voeg de verwijderde IDS naar product.Id
+    // voegt de id toe aan de array
     removedIds.push(productId);
 
-    // slaat opnieuw op
+    // sla alles weer op
     localStorage.setItem('removedIds', JSON.stringify(removedIds));
 
-    // Render data
+    // print de data uit
     renderData(originalData);
 }
 
-// fetch de data uit de JSON dient voor het resetten
+// fetched de data voor localstorage en wanneer je reset drukt wordt alles weer opnieuw uitgehaald
 const resetBtn = document.getElementById('reset-btn').addEventListener('click', () => {
     fetch('../js/JSON/data.json')
         .then(response => {
