@@ -7,6 +7,7 @@ function fetchData() {
     renderData(originalData);
 }
 
+// plaats de actieve informatie
 function renderData(data) {
     const ID = document.getElementById('id-input');
     const NAME = document.getElementById('name-input');
@@ -93,7 +94,7 @@ function createbtns(product, EDIT, REMOVE) {
     REMOVE.appendChild(removeBtn);
 }
 
-// pakt data uit de local en filtered de verwijderde data weg en slaat die ids op en laat het weer weergeven
+// pakt data uit de local en filtered het verwijderde data weg en slaat de ids op en geeft weergeven
 function removeProduct(productId) {
     // haalt origineel data op
     let originalData = JSON.parse(localStorage.getItem('originalData'));
@@ -107,7 +108,7 @@ function removeProduct(productId) {
     // pakt de verwijderde producten IDs op
     let removedIds = JSON.parse(localStorage.getItem('removedIds')) || [];
 
-    // voegt de id toe aan de array
+    // voegt de ids toe aan de array
     removedIds.push(productId);
 
     // sla alles weer op

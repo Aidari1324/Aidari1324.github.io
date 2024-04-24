@@ -1,30 +1,30 @@
-// Geeft de local storage door
+// geeft de local storage door
 let cartItems = [];
 
-// Pakt de data van local storage en parsed het
+// pakt de data van local storage en parsed het
 const storedProducts = localStorage.getItem('originalData');
 if (storedProducts) {
     const products = JSON.parse(storedProducts);
     PrintToCards(products);
-    // Start periodic check for changes in originalData
-    setInterval(checkForDataChanges, 1000); // Check every second
+    // Start checker voor verandering in originalData
+    setInterval(checkForDataChanges, 1000); // elke 1 seconde
 } else {
-    console.error('No products found in local storage');
+    console.error('Geen product gevonden in local');
 }
 
-// Check for existing cart items in local storage
+// checkt of er items zijn in local en displayed ze
 const storedCartItems = localStorage.getItem('cartItems');
 if (storedCartItems) {
     cartItems = JSON.parse(storedCartItems);
 }
 
-// Dient voor datahandelingen naar html
+// dient voor datahandelingen naar html
 function PrintToCards(products) {
     const cardsContainer = document.getElementById('cards-container');
-    // Remove all existing cards
+    // verwijder alle cards
     cardsContainer.innerHTML = '';
 
-    // Loop through products and create card elements
+    // voor elke ID print die dit uit
     products.forEach(product => {
         const card = document.createElement('div');
         card.classList.add('card');
@@ -43,17 +43,17 @@ function PrintToCards(products) {
         pElement.textContent = '€ ' + product.price;
         card.appendChild(pElement);
 
-        // Knop maken en stuurt data ID naar local storage bij click
+        // knop maken en stuurt data ID naar local storage bij click
         const button = document.createElement('button');
         button.textContent = 'Voeg toe aan winkelmandje';
         button.classList.add('card-button');
         button.addEventListener('click', () => {
-            // Product ID toevoegen aan cartItems array
+            // product ID toevoegen aan cartItems array
             const productId = product.id;
             cartItems.push(productId);
             localStorage.setItem('cartItems', JSON.stringify(cartItems));
 
-            // Update the number of items in the cart
+            // update de numer van de checkout cart
             const iconElement = document.querySelector('.icon');
             iconElement.textContent = cartItems.length;
         });
@@ -64,11 +64,11 @@ function PrintToCards(products) {
     });
 }
 
-// Update the cart icon with the number of items on page load
+// update de cart opnieuw na refresh met de huidige nummer
 const iconElement = document.querySelector('.icon');
 iconElement.textContent = cartItems.length;
 
-// Function to check for changes in originalData
+// checkt voor veranderingen in origineel data
 function checkForDataChanges() {
     const currentProducts = localStorage.getItem('originalData');
     if (currentProducts !== storedProducts) {

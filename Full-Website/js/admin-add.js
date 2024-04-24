@@ -23,7 +23,7 @@ const addNewData = () => {
     // Haal originele data op, anders maak een lege array
     let originalData = JSON.parse(localStorage.getItem('originalData')) || [];
 
-    // Genereer een uniek ID voor het nieuwe product
+    // Genereer een pakt de uniek ID voor een nieuwe product
     const ProductId = generateUniqueID(originalData);
 
     // Maak een nieuw productobject
