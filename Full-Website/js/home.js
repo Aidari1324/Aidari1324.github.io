@@ -1,14 +1,34 @@
 let cartItems = [];
 
-// Pakt de data van local storage
+// Check als er producten zitten in data
 const storedProducts = localStorage.getItem('originalData');
+
 if (storedProducts) {
+    // zo ja plaats die
     const products = JSON.parse(storedProducts);
     PrintToCards(products);
-    // checkt elk 1 seconde
-    setInterval(checkForDataChanges, 1000);
 } else {
-    console.error('No products found in local storage');
+    // zo niet pak die
+    fetcher();
+}
+
+// pak data uit JSON
+function fetcher() {
+    fetch('../js/JSON/data.json')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            localStorage.setItem('originalData', JSON.stringify(data));
+            PrintToCards(data);
+            setInterval(checkForDataChanges, 1000);
+        })
+        .catch(error => {
+            console.error(error);
+        });
 }
 
 const storedCartItems = localStorage.getItem('cartItems');
@@ -16,7 +36,7 @@ if (storedCartItems) {
     cartItems = JSON.parse(storedCartItems);
 }
 
-// Dient voor info naar de html
+// Dient voor data naar de html
 function PrintToCards(products) {
     const cardsContainer = document.getElementById('cards-container');
     // verwijder alle inhoud in de cardcontainer
