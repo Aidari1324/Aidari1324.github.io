@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../CSS/back.css">
+    <script src="../js/admin-edit.js" defer></script>
+    <title>edit-product</title>
+    <style>
+
+
+
+    </style>
+</head>
+<body>
+    <header class="header1">
+        <div class="navbar">
+            <h2>Admin Panel</h2>
+            <div class="btn-holder1">
+                <a href="admin.html" class="main">Orders</a>
+                <a href="admin-p.html">Products</a>
+            </div>
+        </div>
+    </header>
+<main class="main2">
+    <a class="tr" href="../html/admin-p.html">Ga terug</a>
+    <h1 class="edit-h1">Edit product</h1>
+    <div class="product-layout">
+        <div class="name">
+            <label for="product-name">Naam</label>
+            <input type="text" id="product-name" required>
+        </div>
+        <div class="price">
+            <label for="product-price">Prijs</label>
+            <input type="number" id="product-price" min="0" required>
+        </div>
+        <div class="picture">
+            <label for="product-link">Afbeelding</label>
+            <input type="text" id="product-link" required>
+            <button class="preview-btn">Preview</button>
+        </div>
+    <img id="preview-img" src="#" alt="example picture">
+        <div class="end">
+            <button class="save-btn" id="edit-btn">Edit</button>
+        </div>
+    </div>
+</main>
+</body>
+</html>
